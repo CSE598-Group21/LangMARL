@@ -58,6 +58,10 @@ def parse_action_from_response(response, action_mode: str = "discrete"):
     }
 
     if action_mode == "discrete":
+        # With a reasoning line first, read the number after the last "Action:".
+        tagged = re.findall(r'Action:\s*([0-2])\b', text, re.IGNORECASE)
+        if tagged:
+            return int(tagged[-1])
         # Parse discrete action (0, 1, or 2)
         # 0 - retract down, 1 - stay, 2 - push up
         # Look for a single digit 0-2 at the start of the response or after "Action:"
@@ -511,12 +515,17 @@ At each timestep, you can observe only **local information**:
         if action_mode == "discrete":
             prompt += """
 === YOUR DECISION ===
-Choose your action (respond with the number only on the first line):
-  0 = RETRACT_DOWN
-  1 = STAY (hold position)
-  2 = PUSH_UP
+First write ONE short sentence: is the ball to your left or right, and what
+does your policy say a piston in your position should do? Then give the action.
+0 = RETRACT_DOWN
+1 = STAY (hold position)
+2 = PUSH_UP
 
-Action:"""
+Use exactly this format:
+Reason: <one short sentence>
+Action: <0, 1 or 2>
+
+Reason:"""
         elif action_mode == "continuous":
             prompt += """
 === YOUR DECISION ===

@@ -260,7 +260,7 @@ class PistonballEnv(BaseEnvironment):
         )
         response, step_tokens = self.llm_client.chat_with_usage(
             "You control a single piston in a cooperative Pistonball game. "
-            "Answer with your action only.",
+            "Follow the response format given in the prompt.",
             prompt,
         )
         action = parse_action_from_response(response, self.action_mode)
