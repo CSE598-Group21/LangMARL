@@ -42,7 +42,7 @@ TARBALL_URL = (
 )
 
 #: Overlaid wholesale -- the fork's versions are supersets of 0.0.1's.
-OVERLAY = ["planning/search.py", "planning/__init__.py", "utils.py", "static.py"]
+OVERLAY = ["planning/search.py", "planning/__init__.py", "utils.py", "static.py", "mdp/overcooked_mdp.py"]
 
 #: Present in 0.0.1's planners.py, dropped by the fork, still imported by
 #: agents/agent.py. Merged back onto the end of the fork's file.

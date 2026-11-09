@@ -18,11 +18,13 @@ class PolicyCheckpoint:
         run_id: str,
         num_agents: int,
         default_policy_fn: Callable[[int, int], str] = None,
+        agent_names: Optional[list[str]] = None,
     ):
         self.store = store
         self.run_id = run_id
         self.num_agents = num_agents
         self.default_policy_fn = default_policy_fn or default_agent_prompt
+        self.agent_names = agent_names
 
     def get_policies(self, iteration: Optional[int] = None) -> dict[str, str]:
         """Load policies. If iteration=None, load latest. If none exists, generate defaults."""
@@ -55,7 +57,8 @@ class PolicyCheckpoint:
         }
 
     def _generate_defaults(self) -> dict[str, str]:
+        names = self.agent_names or [f"agent_{i + 1}" for i in range(self.num_agents)]
         return {
-            f"agent_{i + 1}": self.default_policy_fn(i, self.num_agents)
-            for i in range(self.num_agents)
+            name: self.default_policy_fn(i, len(names))
+            for i, name in enumerate(names)
         }

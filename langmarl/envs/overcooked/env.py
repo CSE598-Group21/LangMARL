@@ -184,7 +184,9 @@ class OvercookedEnv(BaseEnvironment):
             "tokens": tokens,
         }
         return Trajectory(task=task, steps=transitions, reward=total_reward, metadata=metadata)
-
+    def default_policy(self, agent_idx: int, num_agents: int) -> str:
+        """Starting strategy, matching ckpt_policy/overcooked/cramped_room_policy.json."""
+        return f"Game Strategy for Player {agent_idx}:"
     # ------------------------------------------------------------ critic hooks
 
     def format_trajectory(self, episode: dict, paradigm: str) -> str:

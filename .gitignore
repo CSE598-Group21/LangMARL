@@ -13,6 +13,7 @@ build/
 dist/
 .eggs/
 .venv/
+.venv-oc
 venv/
 .pytest_cache/
 .ruff_cache/

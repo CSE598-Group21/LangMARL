@@ -53,7 +53,11 @@ class MonteCarloTrainer:
         self.store = store or LocalStore(config.experiment_dir)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.run_id = self.store.create_run(f"{config.exp_name}_{timestamp}", config)
-        self.checkpoint = PolicyCheckpoint(self.store, self.run_id, config.num_agents)
+        self.checkpoint = PolicyCheckpoint(
+            self.store, self.run_id, config.num_agents,
+            default_policy_fn=getattr(env, "default_policy", None),
+            agent_names=getattr(env, "agent_names", None),
+        )
         self.trajectory_store = TrajectoryStore(self.store, self.run_id)
         self.run_logger = RunLogger(self.store, self.run_id, level=config.log_level)
 
