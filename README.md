@@ -520,3 +520,35 @@ HotPotQA, MATH and HumanEval benchmarks. Each keeps its own license.
 ## License
 
 Released under the [MIT License](LICENSE).
+
+
+
+## Milestone 2 (CSE 598 Group 21): running on ASU models
+  
+Overcooked:
+
+    python3.11 -m venv .venv-oc && source .venv-oc/bin/activate
+    pip install -e ".[overcooked]" && python scripts/setup_overcooked.py
+    langmarl train --config configs/overcooked/asu_smoke_A.json        # short test, about 3 min
+    langmarl train --config configs/overcooked/asu_cramped_room_A.json # Cramped Room
+    langmarl train --config configs/overcooked/asu_forced_coord_B.json # Forced Coordination
+    python examples/overcooked_greedy_baseline.py                      # baseline (no AI)
+
+Pistonball:
+
+    python3.11 -m venv .venv && source .venv/bin/activate
+    pip install -e ".[pistonball]"
+    langmarl train --config configs/pistonball/asu_smoke_N10.json      # short test, about 3 min
+    langmarl train --config configs/pistonball/asu_N10.json            # 10 pistons
+    python examples/pistonball_rule_baseline.py --pistons 10           # baseline (no AI)
+
+Create a .env file in the project root (it is git-ignored):
+
+    OPENAI_API_KEY=<your ASU key>
+    OPENAI_BASE_URL=https://openai.rc.asu.edu/v1
+    USE_OPENROUTER=true
+    OPENROUTER_API_KEY=<your ASU key>
+    OPENROUTER_BASE_URL=https://openai.rc.asu.edu/v1
+
+Results are saved in experiments/runs/<run name>/. The score for each
+round is in metrics/training_curve.jsonl.
