@@ -280,6 +280,14 @@ class PistonballObservationFormatter:
         ball_y = 491.0 - ball_y
         piston_y = 491.0 - piston_y
 
+        # Neighbour heights. The prompt's rules promise these, and a piston
+        # needs them to tell if it is above or below its neighbours (the
+        # left-low / right-high slope that rolls the ball to the goal).
+        def _height(i):
+            return 491.0 - state["pistons"][i]["position"][1]
+        left_h = f"{_height(agent_idx - 1):.1f}" if agent_idx > 0 else "none (you are the leftmost piston)"
+        right_h = f"{_height(agent_idx + 1):.1f}" if agent_idx < num_agents - 1 else "none (you are the rightmost piston)"
+
         # Calculate relative position of ball to this piston
         ball_rel_x = ball_x - piston_x  # positive = ball is to the right
 
@@ -299,6 +307,8 @@ class PistonballObservationFormatter:
             f"Piston index: #{agent_idx} of {num_agents} ({piston_region})",
             f"Your X position: {piston_x:.1f} (screen width: {screen_width})",
             f"Your Y position: {piston_y:.1f}",
+            f"Left neighbor Y position: {left_h}",
+            f"Right neighbor Y position: {right_h}",
             "",
             "=== Ball Relative to You ===",
         ]
