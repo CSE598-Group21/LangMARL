@@ -1,0 +1,33 @@
+{
+  "env": "overcooked",
+  "exp_name": "oc_smoke_B",
+  "paradigm": "central_credit",
+  "layout": "cramped_room",
+  "episode_horizon": 50,
+  "p0_agent": "ProAgent",
+  "p1_agent": "ProAgent",
+  "num_agents": 2,
+  "num_iterations": 1,
+  "trajectories_per_iteration": 1,
+  "max_workers": 1,
+  "experiment_dir": "./experiments",
+  "llm": {
+    "name": "gemma4-31b-it",
+    "model_string": "gemma4-31b-it",
+    "base_url": "https://openai.rc.asu.edu/v1",
+    "max_tokens": 4096
+  },
+  "critic_llm": {
+    "name": "qwen38-27b",
+    "model_string": "qwen38-27b",
+    "base_url": "https://openai.rc.asu.edu/v1",
+    "max_tokens": 8192
+  },
+  "optimizer_llm": {
+    "name": "qwen38-27b",
+    "model_string": "qwen38-27b",
+    "base_url": "https://openai.rc.asu.edu/v1",
+    "max_tokens": 8192
+  },
+  "log_level": "INFO"
+}
