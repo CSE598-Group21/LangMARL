@@ -141,7 +141,7 @@ class Module(object):
                         max_tokens = 256,
                         extra_headers=extra_headers if extra_headers else None
                     )
-                    time.sleep(10)
+                    # time.sleep(10)  # removed: OpenAI rate-limit pause, not needed on the ASU gateway
                 else:
                     raise Exception(f"Model {self.model} not supported.")
 
