@@ -179,6 +179,7 @@ class VerifiedRewardGenerator(BaseReward):
             model=self.judge_model,
             messages=messages,
             max_tokens=64,
+            reasoning_effort="none"
         )
         text = result.choices[0].message.content.strip()
         if re.search(r"\bCORRECT\b", text) and not re.search(r"\bINCORRECT\b", text):

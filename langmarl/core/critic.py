@@ -337,5 +337,6 @@ class CentralizedCritic(BaseCritic):
             params["max_completion_tokens"] = max_tokens
         else:
             params["max_tokens"] = max_tokens
+        params["reasoning_effort"] = "none"
         resp = self._client.chat.completions.create(**params)
         return resp.choices[0].message.content.strip()
