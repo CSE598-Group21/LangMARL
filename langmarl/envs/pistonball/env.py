@@ -11,6 +11,7 @@ plumbing and checkpointing now come from :mod:`langmarl.trainer`.
 from __future__ import annotations
 
 import logging
+from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
 import numpy as np
@@ -144,15 +145,20 @@ class PistonballEnv(BaseEnvironment):
             actions = {}
             agent_infos = {}
 
-            for agent_name in env.possible_agents:
-                if agent_name not in obs_dict:
-                    continue
+            # Algorithm 2: every piston picks its action in parallel. The env
+            # is only read here; it is stepped after all replies are back.
+            live = [a for a in env.possible_agents if a in obs_dict]
+            with ThreadPoolExecutor(max_workers=max(1, len(live))) as pool:
+                replies = dict(zip(live, pool.map(
+                    lambda a: self._act(env, a, policies.get(a, DEFAULT_POLICY)), live
+                )))
+
+            for agent_name in live:
                 agent_idx = env.possible_agents.index(agent_name)
 
                 # Local observation is all the actor sees (decentralized execution).
                 local_obs_text = self.obs_formatter.format_local_observation(env, agent_idx)
-                policy = policies.get(agent_name, DEFAULT_POLICY)
-                action, response, prompt, step_tokens = self._act(env, agent_name, policy)
+                action, response, prompt, step_tokens = replies[agent_name]
                 tokens["input"] += step_tokens["input"]
                 tokens["output"] += step_tokens["output"]
 
@@ -206,6 +212,10 @@ class PistonballEnv(BaseEnvironment):
             "tokens": tokens,
         }
         return Trajectory(task=task, steps=transitions, reward=total_reward, metadata=metadata)
+    
+    def default_policy(self, agent_idx: int, num_agents: int) -> str:
+        """Starting strategy, matching ckpt_policy/pistonball/policy.json."""
+        return "The piston adjusts its vertical position cooperatively to push the ball toward the left boundary."
 
     # ------------------------------------------------------------ critic hooks
 

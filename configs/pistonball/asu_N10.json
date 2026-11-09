@@ -1,0 +1,32 @@
+{
+"env": "pistonball",
+"exp_name": "pb_N10",
+"paradigm": "central_credit",
+"num_pistons": 10,
+"num_agents": 10,
+"max_cycles": 900,
+"action_mode": "discrete",
+"num_iterations": 5,
+"trajectories_per_iteration": 3,
+"max_workers": 1,
+"experiment_dir": "./experiments",
+"llm": {
+    "name": "gemma4-31b-it",
+    "model_string": "gemma4-31b-it",
+    "base_url": "https://openai.rc.asu.edu/v1",
+    "max_tokens": 4096
+},
+"critic_llm": {
+    "name": "qwen38-27b",
+    "model_string": "qwen38-27b",
+    "base_url": "https://openai.rc.asu.edu/v1",
+    "max_tokens": 8192
+},
+"optimizer_llm": {
+    "name": "qwen38-27b",
+    "model_string": "qwen38-27b",
+    "base_url": "https://openai.rc.asu.edu/v1",
+    "max_tokens": 8192
+},
+"log_level": "INFO"
+}
