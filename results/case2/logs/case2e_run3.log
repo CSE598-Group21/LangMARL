@@ -1,0 +1,4814 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/Users/vveeram6/Movies/CSE-598(Agentic_AI)/Group21/LangMARL/langmarl/envs/overcooked/proagent/proagent.py:5: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+02:05:10 [INFO] Starting training from iteration 0 to 5
+02:05:10 [INFO] 
+============================================================
+Iteration 0
+============================================================
+02:05:10 [INFO] ============================================================
+02:05:10 [INFO] Iteration 0 started | 2 agents
+02:05:10 [INFO] Generating 3 trajectories
+Generating:   0%|          | 0/3 [00:00<?, ?it/s]Generating:  33%|███▎      | 1/3 [08:52<17:45, 532.80s/it]
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(13)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(7)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(16)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots: Generating:  67%|██████▋   | 2/3 [16:25<08:05, 485.80s/it] [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(16)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(12)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []Generating: 100%|██████████| 3/3 [24:10<00:00, 476.05s/it]Generating: 100%|██████████| 3/3 [24:10<00:00, 483.38s/it]
+
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(15)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Evaluating:   0%|          | 0/3 [00:00<?, ?it/s]Environment 'cramped_room' supplied critic variables the 'central_credit' template does not use, so they will not reach the critic: role_context
+Evaluating:  33%|███▎      | 1/3 [01:25<02:50, 85.45s/it]Evaluating:  67%|██████▋   | 2/3 [02:42<01:20, 80.37s/it]Evaluating: 100%|██████████| 3/3 [04:09<00:00, 83.61s/it]Evaluating: 100%|██████████| 3/3 [04:09<00:00, 83.24s/it]
+02:33:36 [INFO]   Gradient agent_0 | 3 episode gradients aggregated
+02:33:40 [INFO]   Gradient agent_1 | 3 episode gradients aggregated
+02:33:40 [INFO] Iteration 0 done | avg_reward=213.333 | tokens=304737 | cost=$0.0000
+02:33:41 [INFO] 
+============================================================
+Iteration 1
+============================================================
+02:33:41 [INFO] ============================================================
+02:33:41 [INFO] Iteration 1 started | 2 agents
+02:33:41 [INFO] Generating 3 trajectories
+Generating:   0%|          | 0/3 [00:00<?, ?it/s]Generating:  33%|███▎      | 1/3 [08:14<16:29, 495.00s/it]
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Parallelize Workflow**: Strictly separate resource acquisition from waiting times.
+2. **Immediate Placement**: Immediately after adding ingredients to the pot, place the dish on a nearby counter. Never hold the pot while it cooks; this frees you to fetch the next batch of ingredients (e.g., onions) or retrieve items from Player 1 if within immediate reach.
+3. **Efficient Waiting**: While the soup simmers, issue `wait` actions to pause. Do not perform redundant placement loops on empty dishes.
+4. **Proactive Transition**: As the soup nears completion (~80%), initiate movement to the next dispenser or player to minimize transition latency for the subsequent cycle.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(13)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counterGenerating:  67%|██████▋   | 2/3 [17:50<09:02, 542.64s/it]
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(16)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(16)
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Parallelize Workflow**: Strictly separate resource acquisition from waiting times.
+2. **Immediate Placement**: Immediately after adding ingredients to the pot, place the dish on a nearby counter. Never hold the pot while it cooks; this frees you to fetch the next batch of ingredients (e.g., onions) or retrieve items from Player 1 if within immediate reach.
+3. **Efficient Waiting**: While the soup simmers, issue `wait` actions to pause. Do not perform redundant placement loops on empty dishes.
+4. **Proactive Transition**: As the soup nears completion (~80%), initiate movement to the next dispenser or player to minimize transition latency for the subsequent cycle.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counterGenerating: 100%|██████████| 3/3 [26:49<00:00, 540.98s/it]Generating: 100%|██████████| 3/3 [26:49<00:00, 536.66s/it]
+
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(2)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(15)
+Player 0: wait(3)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Parallelize Workflow**: Strictly separate resource acquisition from waiting times.
+2. **Immediate Placement**: Immediately after adding ingredients to the pot, place the dish on a nearby counter. Never hold the pot while it cooks; this frees you to fetch the next batch of ingredients (e.g., onions) or retrieve items from Player 1 if within immediate reach.
+3. **Efficient Waiting**: While the soup simmers, issue `wait` actions to pause. Do not perform redundant placement loops on empty dishes.
+4. **Proactive Transition**: As the soup nears completion (~80%), initiate movement to the next dispenser or player to minimize transition latency for the subsequent cycle.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(15)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: wait(7)
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(16)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(18)
+Evaluating:   0%|          | 0/3 [00:00<?, ?it/s]Evaluating:  33%|███▎      | 1/3 [01:22<02:44, 82.17s/it]Evaluating:  67%|██████▋   | 2/3 [06:20<03:29, 209.32s/it]Evaluating: 100%|██████████| 3/3 [08:06<00:00, 162.17s/it]Evaluating: 100%|██████████| 3/3 [08:06<00:00, 162.19s/it]
+03:08:46 [INFO]   Gradient agent_0 | 3 episode gradients aggregated
+03:08:54 [INFO]   Gradient agent_1 | 3 episode gradients aggregated
+03:08:54 [INFO] Iteration 1 done | avg_reward=213.333 | tokens=616893 | cost=$0.0000
+03:08:54 [INFO] 
+============================================================
+Iteration 2
+============================================================
+03:08:54 [INFO] ============================================================
+03:08:54 [INFO] Iteration 2 started | 2 agents
+03:08:54 [INFO] Generating 3 trajectories
+Generating:   0%|          | 0/3 [00:00<?, ?it/s]Generating:  33%|███▎      | 1/3 [09:40<19:21, 580.76s/it]
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Immediate Placement**: The moment ingredients are added to the pot, place the dish on a nearby counter. Never hold the pot during the cooking phase; this ensures your hands are free for active pre-staging tasks.
+2. **Active Pre-Staging**: Use the 20-timestep cooking window for strict parallelization. Do not issue redundant `wait` actions or manipulate empty dishes. Instead, actively verify the next required dispenser’s status (ensuring it is in range and unoccupied) and begin moving toward the next resource location or serving point.
+3. **Proactive Transition**: Initiate movement to the next station at approximately 80% cooking progress to minimize delivery latency for the subsequent cycle.
+4. **Fault Tolerance & Resource Acquisition**: Only attempt pickup actions after confirming the target is accessible. If an action fails or the state does not change, do not loop on retries. Immediately switch to moving toward the next valid resource location or player to maintain workflow momentum.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(12)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dishGenerating:  67%|██████▋   | 2/3 [19:59<10:03, 603.11s/it]
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(13)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(13)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(13)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Immediate Placement**: The moment ingredients are added to the pot, place the dish on a nearby counter. Never hold the pot during the cooking phase; this ensures your hands are free for active pre-staging tasks.
+2. **Active Pre-Staging**: Use the 20-timestep cooking window for strict parallelization. Do not issue redundant `wait` actions or manipulate empty dishes. Instead, actively verify the next required dispenser’s status (ensuring it is in range and unoccupied) and begin moving toward the next resource location or serving point.
+3. **Proactive Transition**: Initiate movement to the next station at approximately 80% cooking progress to minimize delivery latency for the subsequent cycle.
+4. **Fault Tolerance & Resource Acquisition**: Only attempt pickup actions after confirming the target is accessible. If an action fails or the state does not change, do not loop on retries. Immediately switch to moving toward the next valid resource location or player to maintain workflow momentum.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(8)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(12)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onionGenerating: 100%|██████████| 3/3 [30:43<00:00, 621.85s/it]Generating: 100%|██████████| 3/3 [30:43<00:00, 614.56s/it]
+
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(13)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(11)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(12)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Immediate Placement**: The moment ingredients are added to the pot, place the dish on a nearby counter. Never hold the pot during the cooking phase; this ensures your hands are free for active pre-staging tasks.
+2. **Active Pre-Staging**: Use the 20-timestep cooking window for strict parallelization. Do not issue redundant `wait` actions or manipulate empty dishes. Instead, actively verify the next required dispenser’s status (ensuring it is in range and unoccupied) and begin moving toward the next resource location or serving point.
+3. **Proactive Transition**: Initiate movement to the next station at approximately 80% cooking progress to minimize delivery latency for the subsequent cycle.
+4. **Fault Tolerance & Resource Acquisition**: Only attempt pickup actions after confirming the target is accessible. If an action fails or the state does not change, do not loop on retries. Immediately switch to moving toward the next valid resource location or player to maintain workflow momentum.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(10)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(15)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(14)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(13)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(11)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(16)
+Evaluating:   0%|          | 0/3 [00:00<?, ?it/s]Evaluating:  33%|███▎      | 1/3 [01:33<03:06, 93.17s/it]Evaluating:  67%|██████▋   | 2/3 [03:55<02:02, 122.36s/it]Evaluating: 100%|██████████| 3/3 [06:48<00:00, 145.33s/it]Evaluating: 100%|██████████| 3/3 [06:48<00:00, 136.21s/it]
+03:46:37 [INFO]   Gradient agent_0 | 3 episode gradients aggregated
+03:46:46 [INFO]   Gradient agent_1 | 3 episode gradients aggregated
+03:46:46 [INFO] Iteration 2 done | avg_reward=220.000 | tokens=938245 | cost=$0.0000
+03:46:46 [INFO] 
+============================================================
+Iteration 3
+============================================================
+03:46:46 [INFO] ============================================================
+03:46:46 [INFO] Iteration 3 started | 2 agents
+03:46:46 [INFO] Generating 3 trajectories
+Generating:   0%|          | 0/3 [00:00<?, ?it/s]Generating:  33%|███▎      | 1/3 [11:09<22:19, 669.99s/it]
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Role Specialization**: Focus exclusively on pot management (adding ingredients, filling, serving). Strictly delegate resource gathering to the partner agent. Do not attempt to pick up raw ingredients or travel to dispensers; instead, rely on coordination cues to ensure ingredients are pre-staged at the pot for immediate use.
+2. **Zero-Idle Workflow**: Eliminate all redundant "place on counter" and "pickup dish" loops. Never hold the pot or idle during cooking. The moment ingredients are added and the cooking phase begins, immediately transition to the next actionable state.
+3. **Proactive Transition**: Use the 20-timestep cooking window for parallelization. Do not issue `wait` actions. Instead, actively verify the next serving point’s status and begin moving toward it or the next station at approximately 80% cooking progress to minimize delivery latency.
+4. **Fault Tolerance**: If an action fails or the state does not change, do not retry. Immediately switch to the next valid workflow step (e.g., moving to the serving point or preparing for the next batch) to maintain continuous throughput and prevent inefficient serial cycles.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(15)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onionGenerating:  67%|██████▋   | 2/3 [22:32<11:17, 677.60s/it]
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(15)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(16)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: wait(5)
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Role Specialization**: Focus exclusively on pot management (adding ingredients, filling, serving). Strictly delegate resource gathering to the partner agent. Do not attempt to pick up raw ingredients or travel to dispensers; instead, rely on coordination cues to ensure ingredients are pre-staged at the pot for immediate use.
+2. **Zero-Idle Workflow**: Eliminate all redundant "place on counter" and "pickup dish" loops. Never hold the pot or idle during cooking. The moment ingredients are added and the cooking phase begins, immediately transition to the next actionable state.
+3. **Proactive Transition**: Use the 20-timestep cooking window for parallelization. Do not issue `wait` actions. Instead, actively verify the next serving point’s status and begin moving toward it or the next station at approximately 80% cooking progress to minimize delivery latency.
+4. **Fault Tolerance**: If an action fails or the state does not change, do not retry. Immediately switch to the next valid workflow step (e.g., moving to the serving point or preparing for the next batch) to maintain continuous throughput and prevent inefficient serial cycles.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(16)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soupGenerating: 100%|██████████| 3/3 [32:48<00:00, 649.17s/it]Generating: 100%|██████████| 3/3 [32:48<00:00, 656.08s/it]
+
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(15)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(13)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: wait(2)
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Role Specialization**: Focus exclusively on pot management (adding ingredients, filling, serving). Strictly delegate resource gathering to the partner agent. Do not attempt to pick up raw ingredients or travel to dispensers; instead, rely on coordination cues to ensure ingredients are pre-staged at the pot for immediate use.
+2. **Zero-Idle Workflow**: Eliminate all redundant "place on counter" and "pickup dish" loops. Never hold the pot or idle during cooking. The moment ingredients are added and the cooking phase begins, immediately transition to the next actionable state.
+3. **Proactive Transition**: Use the 20-timestep cooking window for parallelization. Do not issue `wait` actions. Instead, actively verify the next serving point’s status and begin moving toward it or the next station at approximately 80% cooking progress to minimize delivery latency.
+4. **Fault Tolerance**: If an action fails or the state does not change, do not retry. Immediately switch to the next valid workflow step (e.g., moving to the serving point or preparing for the next batch) to maintain continuous throughput and prevent inefficient serial cycles.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(12)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: pickup_dish
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(15)
+Evaluating:   0%|          | 0/3 [00:00<?, ?it/s]Evaluating:  33%|███▎      | 1/3 [03:43<07:27, 223.83s/it]Evaluating:  67%|██████▋   | 2/3 [06:01<02:53, 173.36s/it]Evaluating: 100%|██████████| 3/3 [07:56<00:00, 146.66s/it]Evaluating: 100%|██████████| 3/3 [07:56<00:00, 158.92s/it]
+04:27:40 [INFO]   Gradient agent_0 | 3 episode gradients aggregated
+04:27:48 [INFO]   Gradient agent_1 | 3 episode gradients aggregated
+04:27:48 [INFO] Iteration 3 done | avg_reward=220.000 | tokens=1285155 | cost=$0.0000
+04:27:48 [INFO] 
+============================================================
+Iteration 4
+============================================================
+04:27:48 [INFO] ============================================================
+04:27:48 [INFO] Iteration 4 started | 2 agents
+04:27:48 [INFO] Generating 3 trajectories
+Generating:   0%|          | 0/3 [00:00<?, ?it/s]Generating:  33%|███▎      | 1/3 [14:19<28:38, 859.06s/it]
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Role Specialization**: Focus exclusively on pot management (adding ingredients, filling, serving). Strictly delegate resource gathering to the partner agent. Do not pick up raw ingredients or travel to dispensers for stock; rely on coordination cues to ensure ingredients are pre-staged at the pot.
+
+2. **Cooking Phase Protocol**: During the 20-timestep cooking phase, strictly prohibit interaction with the pot or filling dishes to prevent deadlock. Immediately reposition to the serving area or nearest ingredient dispenser. Maintain a held dish throughout this window to avoid redundant trips and enable immediate filling upon the soup reaching "ready" status.
+
+3. **Proactive Positioning**: Do not issue passive `wait` actions during cooking. Use the window to move toward the serving point or next station. Begin final positioning at approximately 80% cooking progress to minimize delivery latency.
+
+4. **Synchronization & Fault Tolerance**: Before any interaction, verify your current position to prevent invalid action loops. Use active movement or minimal `wait(1)` checks to stay synchronized with the pot's state without passive idling. If an action fails, do not retry; immediately switch to the next valid workflow step (e.g., moving to the serving point) to maintain continuous throughput.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: wait(1)
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(14)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []Generating:  67%|██████▋   | 2/3 [30:16<15:17, 917.11s/it]
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(12)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Role Specialization**: Focus exclusively on pot management (adding ingredients, filling, serving). Strictly delegate resource gathering to the partner agent. Do not pick up raw ingredients or travel to dispensers for stock; rely on coordination cues to ensure ingredients are pre-staged at the pot.
+
+2. **Cooking Phase Protocol**: During the 20-timestep cooking phase, strictly prohibit interaction with the pot or filling dishes to prevent deadlock. Immediately reposition to the serving area or nearest ingredient dispenser. Maintain a held dish throughout this window to avoid redundant trips and enable immediate filling upon the soup reaching "ready" status.
+
+3. **Proactive Positioning**: Do not issue passive `wait` actions during cooking. Use the window to move toward the serving point or next station. Begin final positioning at approximately 80% cooking progress to minimize delivery latency.
+
+4. **Synchronization & Fault Tolerance**: Before any interaction, verify your current position to prevent invalid action loops. Use active movement or minimal `wait(1)` checks to stay synchronized with the pot's state without passive idling. If an action fails, do not retry; immediately switch to the next valid workflow step (e.g., moving to the serving point) to maintain continuous throughput.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]Generating: 100%|██████████| 3/3 [45:36<00:00, 918.22s/it]Generating: 100%|██████████| 3/3 [45:36<00:00, 912.12s/it]
+
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(18)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: put_onion_in_pot
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(2)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(17)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+
+--->Initializing GPT planner<---
+
+
+[ACTOR MODE] Loaded policy for Agent 0 from iteration 0
+
+Instructions:
+- The Overcooked_AI game requires two players to work together as a team with the goal of achieving the highest possible score.
+- To get the points, the team need to make soup according to recipe, fill the soup in a dish and immediately deliver the soup. Once a delivery is made, the team gets 20 points. Plus, this soup and dishes will disappear, no need to wash and recycle the dishes.
+- recipe: three onions in the <Pot>
+- To make a soup, the team must pick up three onions one by one, put them in a <Pot>. <Pot> will automatically start cooking when <Pot> is full (contains 3 onions) and it will take 20 time steps to complete the soup.
+- Each player can only pick up and hold one item at a time.To put down the thing which player is holding and empty his hand, he should use place_obj_on_counter.
+- <Pot> can ONLY hold three ingredients.
+- After start cooking, <Pot> needs 20 cooking timesteps to finish a food. Before the food is finished, players should:
+	- If all pots are cooking or ready, Pick up a dish and then fill dish with soup.
+	- If there is a <Pot> not full in the environment, Prepare for another cook cycle.
+
+Game Strategy for Player 0:
+
+1. **Role Specialization**: Focus exclusively on pot management (adding ingredients, filling, serving). Strictly delegate resource gathering to the partner agent. Do not pick up raw ingredients or travel to dispensers for stock; rely on coordination cues to ensure ingredients are pre-staged at the pot.
+
+2. **Cooking Phase Protocol**: During the 20-timestep cooking phase, strictly prohibit interaction with the pot or filling dishes to prevent deadlock. Immediately reposition to the serving area or nearest ingredient dispenser. Maintain a held dish throughout this window to avoid redundant trips and enable immediate filling upon the soup reaching "ready" status.
+
+3. **Proactive Positioning**: Do not issue passive `wait` actions during cooking. Use the window to move toward the serving point or next station. Begin final positioning at approximately 80% cooking progress to minimize delivery latency.
+
+4. **Synchronization & Fault Tolerance**: Before any interaction, verify your current position to prevent invalid action loops. Use active movement or minimal `wait(1)` checks to stay synchronized with the pot's state without passive idling. If an action fails, do not retry; immediately switch to the next valid workflow step (e.g., moving to the serving point) to maintain continuous throughput.
+
+Legal actions:
+In this game, each player can ONLY perform the following 6 allowed skill: pickup_onion_from_dispenser, pickup_onion_from_counter, pickup(dish), place_obj_on_counter(), put_onion_in_pot(), fill_dish_with_soup(), deliver_soup(), wait(x). Do not attempt to use any other skills that are not listed here.
+    - pickup_onion_from_dispenser
+        - Player needs to have nothing in hand.
+        - Pick up onion directly from the onion dispenser.
+    - pickup_onion_from_counter
+        - Player needs to have nothing in hand.
+        - There must be an onion on the counter.
+        - Pick up onion from the counter.
+    - put_onion_in_pot()
+        - I need to have an onion in hand.
+    - pickup(dish)
+        - I need to have nothing in hand.
+        - A player can hold only one dish at a time.
+    - fill_dish_with_soup()
+        - I need to have a dish in hand.
+    - deliver_soup()
+        - I need to have soup in hand.
+        - The dish and soup will both disappear.
+    - place_obj_on_counter()
+        - I need to have something in hand.
+    - wait(x) 
+        - wait for x timestep and do nothing.
+
+Facts:
+Suppose you are an assistant who is proficient in the overcooked_ai game. Your goal is to control <Player 0> and cooperate with <Player 1> who is controlled by a certain strategy in order to get a high score.
+- <Player 0> and <Player 1> cannot communicate.
+- For each step, you will receive the current scene (including the kitchen, teammates status).
+- Based on the current scene, you need to 
+    1. Describe the current scene and analysis it,
+    2. Plan ONLY ONE best skill for <Player 0>  to do right now. Format should not use natural language, but use the allowed functions,,don't respond with skill that is not in the allowed skills.
+- Map Description: The kitchen features a large open central area with a single pot placed at the top center. Onion supply crates are positioned on both the left and right sides of the map, while dishes are located at the bottom left and the delivery area is at the bottom center.
+
+Outputs:
+-Your response should be in the following format:
+Analysis:[your analysis of the current scene]
+Plan for Player 0: [one action in [pickup_onion_from_dispenser, pickup_onion_from_counter, put_onion_in_pot(),pickup(dish),fill_dish_with_soup(),deliver_soup(),place_obj_on_counter(), wait(x)]]
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: wait(1)
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  []
+ready_pots:  []
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: fill_dish_with_soup
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: place_obj_on_counter
+counter_list = []
+counter_list = []
+counter_list = []
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: fill_dish_with_soup
+ready_pots:  []
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: place_obj_on_counter
+counter_list = []
+Player 0: pickup_onion
+Player 0: put_onion_in_pot
+Player 0: pickup_dish
+Player 0: wait(16)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+ready_pots:  [(2, 0)]
+Player 0: deliver_soup
+Player 0: pickup_dish
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(1)
+Player 0: wait(19)
+Player 0: fill_dish_with_soup
+ready_pots:  [(2, 0)]
+Evaluating:   0%|          | 0/3 [00:00<?, ?it/s]Evaluating:  33%|███▎      | 1/3 [01:12<02:24, 72.27s/it]Evaluating:  67%|██████▋   | 2/3 [02:32<01:16, 76.79s/it]Evaluating: 100%|██████████| 3/3 [04:02<00:00, 83.00s/it]Evaluating: 100%|██████████| 3/3 [04:02<00:00, 80.87s/it]
+05:17:38 [INFO]   Gradient agent_0 | 3 episode gradients aggregated
+05:17:49 [INFO]   Gradient agent_1 | 3 episode gradients aggregated
+05:17:49 [INFO] Iteration 4 done | avg_reward=206.667 | tokens=1652173 | cost=$0.0000
+05:17:49 [INFO] Training complete!
+
+Training complete!

@@ -1,0 +1,1367 @@
+{
+ "R001": {
+  "case": "case2b",
+  "run": 1,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R002": {
+  "case": "case2e",
+  "run": 1,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R003": {
+  "case": "case2b",
+  "run": 3,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R004": {
+  "case": "case2c",
+  "run": 3,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R005": {
+  "case": "case1",
+  "run": 3,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R006": {
+  "case": "case2e",
+  "run": 1,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R007": {
+  "case": "case2e",
+  "run": 1,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R008": {
+  "case": "case1",
+  "run": 3,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R009": {
+  "case": "case2d",
+  "run": 1,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R010": {
+  "case": "case2e",
+  "run": 3,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R011": {
+  "case": "case1",
+  "run": 1,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R012": {
+  "case": "case1",
+  "run": 1,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R013": {
+  "case": "case2b",
+  "run": 1,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R014": {
+  "case": "case2e",
+  "run": 3,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R015": {
+  "case": "case2b",
+  "run": 3,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R016": {
+  "case": "case2d",
+  "run": 1,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R017": {
+  "case": "case2e",
+  "run": 3,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R018": {
+  "case": "case2c",
+  "run": 3,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R019": {
+  "case": "case2b",
+  "run": 1,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R020": {
+  "case": "case2e",
+  "run": 1,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R021": {
+  "case": "case2b",
+  "run": 1,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R022": {
+  "case": "case2b",
+  "run": 3,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R023": {
+  "case": "case2e",
+  "run": 2,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R024": {
+  "case": "case1",
+  "run": 1,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R025": {
+  "case": "case2d",
+  "run": 1,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R026": {
+  "case": "case2b",
+  "run": 2,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R027": {
+  "case": "case2e",
+  "run": 2,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R028": {
+  "case": "case1",
+  "run": 1,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R029": {
+  "case": "case2c",
+  "run": 1,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R030": {
+  "case": "case2b",
+  "run": 2,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R031": {
+  "case": "case2c",
+  "run": 2,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R032": {
+  "case": "case2c",
+  "run": 1,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R033": {
+  "case": "case2c",
+  "run": 2,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R034": {
+  "case": "case1",
+  "run": 3,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R035": {
+  "case": "case2e",
+  "run": 1,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R036": {
+  "case": "case2b",
+  "run": 2,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R037": {
+  "case": "case1",
+  "run": 1,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R038": {
+  "case": "case2e",
+  "run": 3,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R039": {
+  "case": "case2c",
+  "run": 3,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R040": {
+  "case": "case2b",
+  "run": 2,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R041": {
+  "case": "case2b",
+  "run": 2,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R042": {
+  "case": "case2c",
+  "run": 2,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R043": {
+  "case": "case1",
+  "run": 1,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R044": {
+  "case": "case2c",
+  "run": 3,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R045": {
+  "case": "case2d",
+  "run": 1,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R046": {
+  "case": "case1",
+  "run": 2,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R047": {
+  "case": "case2c",
+  "run": 2,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R048": {
+  "case": "case2e",
+  "run": 2,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R049": {
+  "case": "case2c",
+  "run": 3,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R050": {
+  "case": "case2b",
+  "run": 1,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R051": {
+  "case": "case1",
+  "run": 2,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R052": {
+  "case": "case2b",
+  "run": 1,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R053": {
+  "case": "case2e",
+  "run": 2,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R054": {
+  "case": "case2d",
+  "run": 1,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R055": {
+  "case": "case2c",
+  "run": 1,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R056": {
+  "case": "case2c",
+  "run": 1,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R057": {
+  "case": "case2e",
+  "run": 1,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R058": {
+  "case": "case2b",
+  "run": 2,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R059": {
+  "case": "case2e",
+  "run": 2,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R060": {
+  "case": "case1",
+  "run": 1,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R061": {
+  "case": "case2c",
+  "run": 3,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R062": {
+  "case": "case2c",
+  "run": 2,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R063": {
+  "case": "case2c",
+  "run": 1,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R064": {
+  "case": "case2e",
+  "run": 1,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R065": {
+  "case": "case2c",
+  "run": 2,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R066": {
+  "case": "case2b",
+  "run": 2,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R067": {
+  "case": "case2b",
+  "run": 3,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R068": {
+  "case": "case2e",
+  "run": 1,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R069": {
+  "case": "case2c",
+  "run": 2,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R070": {
+  "case": "case2b",
+  "run": 1,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R071": {
+  "case": "case2e",
+  "run": 2,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R072": {
+  "case": "case2b",
+  "run": 1,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R073": {
+  "case": "case2b",
+  "run": 3,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R074": {
+  "case": "case2d",
+  "run": 1,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R075": {
+  "case": "case2c",
+  "run": 2,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R076": {
+  "case": "case2d",
+  "run": 1,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R077": {
+  "case": "case1",
+  "run": 1,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R078": {
+  "case": "case2c",
+  "run": 1,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R079": {
+  "case": "case2b",
+  "run": 2,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R080": {
+  "case": "case2c",
+  "run": 2,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R081": {
+  "case": "case2e",
+  "run": 2,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R082": {
+  "case": "case2d",
+  "run": 1,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R083": {
+  "case": "case2c",
+  "run": 2,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R084": {
+  "case": "case1",
+  "run": 3,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R085": {
+  "case": "case2b",
+  "run": 1,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R086": {
+  "case": "case1",
+  "run": 1,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R087": {
+  "case": "case1",
+  "run": 1,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R088": {
+  "case": "case2c",
+  "run": 3,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R089": {
+  "case": "case2c",
+  "run": 3,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R090": {
+  "case": "case2e",
+  "run": 2,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R091": {
+  "case": "case1",
+  "run": 3,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R092": {
+  "case": "case1",
+  "run": 3,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R093": {
+  "case": "case2e",
+  "run": 1,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R094": {
+  "case": "case2e",
+  "run": 3,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R095": {
+  "case": "case2c",
+  "run": 3,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R096": {
+  "case": "case2b",
+  "run": 3,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R097": {
+  "case": "case2e",
+  "run": 3,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R098": {
+  "case": "case2b",
+  "run": 3,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R099": {
+  "case": "case1",
+  "run": 2,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R100": {
+  "case": "case2e",
+  "run": 3,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R101": {
+  "case": "case1",
+  "run": 2,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R102": {
+  "case": "case2b",
+  "run": 3,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R103": {
+  "case": "case2c",
+  "run": 1,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R104": {
+  "case": "case2e",
+  "run": 2,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R105": {
+  "case": "case1",
+  "run": 1,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R106": {
+  "case": "case2d",
+  "run": 1,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R107": {
+  "case": "case2e",
+  "run": 2,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R108": {
+  "case": "case1",
+  "run": 3,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R109": {
+  "case": "case2b",
+  "run": 1,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R110": {
+  "case": "case1",
+  "run": 1,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R111": {
+  "case": "case2e",
+  "run": 3,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R112": {
+  "case": "case2b",
+  "run": 3,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R113": {
+  "case": "case2e",
+  "run": 1,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R114": {
+  "case": "case1",
+  "run": 2,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R115": {
+  "case": "case1",
+  "run": 2,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R116": {
+  "case": "case2c",
+  "run": 1,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R117": {
+  "case": "case2c",
+  "run": 1,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R118": {
+  "case": "case2b",
+  "run": 2,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R119": {
+  "case": "case1",
+  "run": 3,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R120": {
+  "case": "case2b",
+  "run": 2,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R121": {
+  "case": "case2b",
+  "run": 1,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R122": {
+  "case": "case2d",
+  "run": 1,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R123": {
+  "case": "case2c",
+  "run": 1,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R124": {
+  "case": "case2e",
+  "run": 3,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R125": {
+  "case": "case2e",
+  "run": 1,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R126": {
+  "case": "case1",
+  "run": 2,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R127": {
+  "case": "case2b",
+  "run": 2,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R128": {
+  "case": "case2e",
+  "run": 2,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R129": {
+  "case": "case2c",
+  "run": 2,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R130": {
+  "case": "case1",
+  "run": 3,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R131": {
+  "case": "case2b",
+  "run": 3,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R132": {
+  "case": "case2c",
+  "run": 3,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R133": {
+  "case": "case2c",
+  "run": 1,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R134": {
+  "case": "case1",
+  "run": 1,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R135": {
+  "case": "case1",
+  "run": 2,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R136": {
+  "case": "case2b",
+  "run": 2,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R137": {
+  "case": "case2b",
+  "run": 3,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R138": {
+  "case": "case1",
+  "run": 3,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R139": {
+  "case": "case2b",
+  "run": 1,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R140": {
+  "case": "case2d",
+  "run": 1,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R141": {
+  "case": "case2b",
+  "run": 2,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R142": {
+  "case": "case2b",
+  "run": 2,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R143": {
+  "case": "case1",
+  "run": 3,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R144": {
+  "case": "case2e",
+  "run": 2,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R145": {
+  "case": "case1",
+  "run": 2,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R146": {
+  "case": "case2e",
+  "run": 2,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R147": {
+  "case": "case2d",
+  "run": 1,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R148": {
+  "case": "case2b",
+  "run": 3,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R149": {
+  "case": "case1",
+  "run": 2,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R150": {
+  "case": "case2c",
+  "run": 3,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R151": {
+  "case": "case2b",
+  "run": 1,
+  "round": 2,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_1/eval_episode_000.json"
+ },
+ "R152": {
+  "case": "case2c",
+  "run": 2,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R153": {
+  "case": "case1",
+  "run": 2,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R154": {
+  "case": "case1",
+  "run": 1,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R155": {
+  "case": "case1",
+  "run": 3,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R156": {
+  "case": "case1",
+  "run": 3,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R157": {
+  "case": "case2b",
+  "run": 3,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R158": {
+  "case": "case2e",
+  "run": 3,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R159": {
+  "case": "case2e",
+  "run": 1,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R160": {
+  "case": "case2e",
+  "run": 1,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R161": {
+  "case": "case2b",
+  "run": 2,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124430/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R162": {
+  "case": "case2d",
+  "run": 1,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R163": {
+  "case": "case2c",
+  "run": 1,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R164": {
+  "case": "case2e",
+  "run": 2,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R165": {
+  "case": "case2e",
+  "run": 3,
+  "round": 3,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_2/eval_episode_002.json"
+ },
+ "R166": {
+  "case": "case2c",
+  "run": 1,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R167": {
+  "case": "case2b",
+  "run": 1,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R168": {
+  "case": "case1",
+  "run": 2,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R169": {
+  "case": "case2e",
+  "run": 1,
+  "round": 4,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_3/eval_episode_002.json"
+ },
+ "R170": {
+  "case": "case1",
+  "run": 3,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R171": {
+  "case": "case2e",
+  "run": 3,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R172": {
+  "case": "case2c",
+  "run": 3,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R173": {
+  "case": "case2b",
+  "run": 1,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124019/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R174": {
+  "case": "case2c",
+  "run": 3,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R175": {
+  "case": "case1",
+  "run": 2,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R176": {
+  "case": "case2d",
+  "run": 1,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R177": {
+  "case": "case2e",
+  "run": 1,
+  "round": 1,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261121_212903/evaluations/iter_0/eval_episode_001.json"
+ },
+ "R178": {
+  "case": "case1",
+  "run": 3,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_124004/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R179": {
+  "case": "case2c",
+  "run": 3,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R180": {
+  "case": "case2d",
+  "run": 1,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2d_20261121_212845/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R181": {
+  "case": "case2e",
+  "run": 3,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R182": {
+  "case": "case2c",
+  "run": 2,
+  "round": 5,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_4/eval_episode_001.json"
+ },
+ "R183": {
+  "case": "case2b",
+  "run": 3,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R184": {
+  "case": "case1",
+  "run": 1,
+  "round": 1,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261120_214156/evaluations/iter_0/eval_episode_000.json"
+ },
+ "R185": {
+  "case": "case2b",
+  "run": 3,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2b_20261121_124513/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R186": {
+  "case": "case2c",
+  "run": 1,
+  "round": 1,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_0/eval_episode_002.json"
+ },
+ "R187": {
+  "case": "case2c",
+  "run": 1,
+  "round": 2,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261121_212836/evaluations/iter_1/eval_episode_001.json"
+ },
+ "R188": {
+  "case": "case2c",
+  "run": 2,
+  "round": 5,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_4/eval_episode_002.json"
+ },
+ "R189": {
+  "case": "case1",
+  "run": 2,
+  "round": 4,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_3/eval_episode_000.json"
+ },
+ "R190": {
+  "case": "case2e",
+  "run": 3,
+  "round": 3,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_2/eval_episode_000.json"
+ },
+ "R191": {
+  "case": "case2c",
+  "run": 3,
+  "round": 5,
+  "game": 1,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020448/evaluations/iter_4/eval_episode_000.json"
+ },
+ "R192": {
+  "case": "case2c",
+  "run": 2,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2c_20261122_020438/evaluations/iter_3/eval_episode_001.json"
+ },
+ "R193": {
+  "case": "case2e",
+  "run": 3,
+  "round": 3,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020510/evaluations/iter_2/eval_episode_001.json"
+ },
+ "R194": {
+  "case": "case2e",
+  "run": 2,
+  "round": 2,
+  "game": 3,
+  "src": "experiments/runs/oc_cramped_room_case2e_20261122_020502/evaluations/iter_1/eval_episode_002.json"
+ },
+ "R195": {
+  "case": "case1",
+  "run": 2,
+  "round": 4,
+  "game": 2,
+  "src": "experiments/runs/oc_cramped_room_A_20261121_015901/evaluations/iter_3/eval_episode_001.json"
+ }
+}
