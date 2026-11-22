@@ -128,7 +128,7 @@ class MonteCarloTrainer:
         if self.config.mini_batch_size and self.config.mini_batch_size < len(trajectories):
             gradient_trajectories = random.sample(trajectories, self.config.mini_batch_size)
 
-        gradients = self._evaluate_and_generate_gradients(gradient_trajectories, base_policies)
+        gradients = self._evaluate_and_generate_gradients(gradient_trajectories, base_policies, iteration)
 
         # Phase 4: Aggregate, then update. Each trajectory's gradient was
         # generated and is stored on its own; LLM_agg reconciles the list into
@@ -169,6 +169,7 @@ class MonteCarloTrainer:
 
         def _run_one(idx, task):
             traj = self.env.collect_trajectory(policies, task)
+            traj.metadata["episode_id"] = idx
             self._record_usage(traj)
             self.trajectory_store.save(iteration, idx, traj)
             self.run_logger.episode_saved(iteration, idx, traj.reward)
@@ -193,6 +194,7 @@ class MonteCarloTrainer:
         self,
         trajectories: list[Trajectory],
         base_policies: dict[str, str],
+        iteration: int = 0,
     ) -> dict[str, list[str]]:
         """Evaluate trajectories and generate per-agent gradients."""
         accumulated = {agent: [] for agent in base_policies}
@@ -202,7 +204,7 @@ class MonteCarloTrainer:
             raw_response = eval_result.get("raw_response", "")
             episode_id = traj.metadata.get("episode_id", 0)
             self.run_logger.evaluation_done(
-                0, episode_id, self.config.paradigm, raw_response
+                iteration, episode_id, self.config.paradigm, raw_response
             )
 
             task_context = traj.task.get("question", traj.task.get("problem", ""))[:800]
