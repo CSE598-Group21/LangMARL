@@ -139,6 +139,9 @@ class OvercookedConfig(BaseConfig):
     belief_revision: bool = True
     retrieval_method: str = "recent"
     retrieval_k: int = 3
+    look_busy: bool = False
+    look_busy_style: str = "loud"  # "loud" (Case 2b) | "staging" (disguised as staging)
+    look_busy_middle: bool = False  # only act busy in the middle of the game
 
     def __post_init__(self):
         super().__post_init__()

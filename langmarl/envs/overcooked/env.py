@@ -69,6 +69,9 @@ class OvercookedEnv(BaseEnvironment):
         self.belief_revision = getattr(config, "belief_revision", True)
         self.retrieval_method = getattr(config, "retrieval_method", "recent")
         self.K = getattr(config, "retrieval_k", 3)
+        self.look_busy = getattr(config, "look_busy", False)
+        self.look_busy_style = getattr(config, "look_busy_style", "loud")
+        self.look_busy_middle = getattr(config, "look_busy_middle", False)
 
         self.mdp = OvercookedGridworld.from_layout_name(resolve_layout(self.layout))
         # overcooked_ai 1.1.0 builds an env from an mdp through from_mdp();
@@ -220,6 +223,9 @@ class OvercookedEnv(BaseEnvironment):
                     retrieval_method=self.retrieval_method,
                     K=self.K,
                     policy_path=policy_path,
+                    look_busy=(self.look_busy and idx == 0),
+                    look_busy_style=self.look_busy_style,
+                    look_busy_middle=self.look_busy_middle,
                 )
             else:
                 agent = make_agent(agent_type, self.mdp, self.layout)
